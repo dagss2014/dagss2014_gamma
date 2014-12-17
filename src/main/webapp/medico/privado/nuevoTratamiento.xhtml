@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="/plantillas/plantillaGlobal.xhtml">
+
+            <ui:define name="tituloPagina">
+                TRATAMIENTOS DEL PACIENTE
+            </ui:define>            
+
+            <ui:define name="izquierda">
+
+            </ui:define>
+
+            <ui:define name="contenido">
+                
+                <h:form>
+                    <h:outputText value="Prescripciones" style="font-weight:bold;font-size: 15px;" />
+                    <h:dataTable var="prescripcion" value="#{medicoControlador.tratamiento.prescripciones}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Medicamento" />
+                            </f:facet>
+                            <h:outputText value="#{prescripcion.medicamento.nombre}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Dosis" />
+                            </f:facet>
+                            <h:outputText value="#{prescripcion.dosis}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Indicaciones" />
+                            </f:facet>
+                            <h:outputText value="#{prescripcion.indicaciones}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <h:commandButton value="Añadir" action="#{medicoControlador.doNewPrescripcion()}"/>
+                </h:form>
+                
+                <h:outputText value="&lt;br/&gt;" escape="false" />
+
+                <h:outputText value="Tratamiento" style="font-weight:bold;font-size: 15px;"/>
+                <h:form>
+                    <h:panelGrid id="prescripcion" columns="2" border="0">
+                        <h:outputText value="Fecha Inicio"/>
+                        <p:calendar id="FechaIni" value="#{medicoControlador.fechaInicio}" />
+                        <h:outputText value="Fecha Fin"/>
+                        <p:calendar id="FechaEnd" value="#{medicoControlador.fechaFin}" />
+                        <h:outputText value="Comentarios" />
+                        <h:inputTextarea id="comentarios" cols="20" rows="5" value="#{medicoControlador.comentarios}" />
+                    </h:panelGrid>
+                    <h:commandButton value="Guardar" action="#{medicoControlador.doGuardarTratamiento()}"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

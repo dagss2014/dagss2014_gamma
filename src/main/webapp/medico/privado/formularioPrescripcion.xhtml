@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="/plantillas/plantillaGlobal.xhtml">
+
+            <ui:define name="tituloPagina">
+                Formulario Prescripcion
+            </ui:define>            
+
+            <ui:define name="izquierda">
+
+            </ui:define>
+
+            <ui:define name="contenido">
+                <h:outputText value="Prescripcion"/>
+                <h:form>
+                    <h:panelGrid id="prescripcion" columns="2" border="1">
+                        <h:outputText value="Medicamento"/>
+                        <p:autoComplete id="medicamento" value="#{medicoControlador.nombreMedicamento}" completeMethod="#{medicoControlador.completeText}" />
+                        <h:outputText value="Dosis" />
+                        <h:inputText id="dosis" size="21" value="#{medicoControlador.dosis}"/>
+                        <h:outputText value="Indicaciones" />
+                        <h:inputTextarea id="indicaciones" cols="20" rows="5" value="#{medicoControlador.indicaciones}" />
+                    </h:panelGrid>
+
+                    <h:commandButton value="Guardar" action="#{medicoControlador.doAddPrescripcion()}"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
