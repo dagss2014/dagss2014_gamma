@@ -3,6 +3,7 @@
  */
 package es.uvigo.esei.dagss.dominio.daos;
 
+import es.uvigo.esei.dagss.dominio.entidades.Cita;
 import es.uvigo.esei.dagss.dominio.entidades.Medico;
 import es.uvigo.esei.dagss.dominio.entidades.Paciente;
 import java.util.List;
@@ -37,6 +38,6 @@ public class MedicoDAO extends GenericoDAO<Medico> {
         q.setParameter("patron","%"+patron+"%");        
         return q.getResultList();
     }
-
-    // Completar aqui
+    
+       
 }

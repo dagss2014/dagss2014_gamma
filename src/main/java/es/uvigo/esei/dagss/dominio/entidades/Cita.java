@@ -58,7 +58,7 @@ public class Cita implements Serializable {
         this.duracion = duracion;
         this.estado = estado;
     }
-
+    
     public Long getId() {
         return id;
     }
