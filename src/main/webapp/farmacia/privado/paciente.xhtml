@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Consultar paciente</title>
+    </h:head>
+    
+    <body>
+
+        <ui:composition template="/plantillas/plantillaGlobal.xhtml">
+
+            <ui:define name="tituloPagina">
+                Consultar paciente
+            </ui:define>            
+
+            
+            <ui:define name="contenido">
+                
+                <div id="datosPaciente">
+                    <h:panelGrid columns="2">
+                    <h:outputLabel value="Apellidos, Nombre: " />
+                    <h:outputText value="#{farmaciaControlador.pacienteActual.apellidos}, #{farmaciaControlador.pacienteActual.nombre}"/>
+                    <h:outputLabel value="Número de tarjeta sanitaria: " />
+                    <h:outputText value="#{farmaciaControlador.pacienteActual.getNumeroTarjetaSanitaria()}"/>
+                    </h:panelGrid>
+                </div>
+                
+                <h2 style="margin: 20px">Recetas</h2>
+                
+                <div id="tablaRecetasPaciente">
+                    
+                    <h:dataTable headerClass="headerTabla"
+                                 rowClasses="filaTabla"
+                                 styleClass="tabla"
+                                 value="#{farmaciaControlador.recetas}"
+                                 var="receta">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Medicamento" />
+                            </f:facet>
+                            <h:outputText value="#{receta.prescripcion.medicamento.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cantidad (uds.)" />
+                            </f:facet>
+                            <h:outputText value="#{receta.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Médico" />
+                            </f:facet>
+                            <h:outputText value="#{receta.prescripcion.tratamiento.medico.nombre} #{receta.prescripcion.tratamiento.medico.apellidos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Estado" />
+                            </f:facet>
+                            <h:outputText value="#{receta.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Válida hasta" />
+                            </f:facet>
+                            <h:outputText value="#{receta.finValidez}">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Servir receta" />
+                            </f:facet>
+                            <h:form>
+                                <h:commandButton value="Servir" action="#{farmaciaControlador.doServirReceta(receta.id)}"/>
+                            </h:form>
+                        </h:column>
+                        
+                    </h:dataTable> 
+                </div>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

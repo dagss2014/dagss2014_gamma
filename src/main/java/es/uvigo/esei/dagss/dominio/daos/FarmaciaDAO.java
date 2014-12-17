@@ -19,6 +19,14 @@ public class FarmaciaDAO extends GenericoDAO<Farmacia> {
 
         return filtrarResultadoUnico(q);
     }
+    
+    public Farmacia modificarDatos(Farmacia f){
+        return em.merge(f);
+    }
+    
+    public Farmacia modificarCredenciales(Farmacia f){
+        return em.merge(f);
+    }
 
     // Completar aqui
 }

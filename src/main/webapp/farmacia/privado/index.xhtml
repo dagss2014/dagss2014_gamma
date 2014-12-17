@@ -5,19 +5,70 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+    <h:head>
+        <title>Farmacia Index</title>
+    </h:head>
+    
     <body>
 
         <ui:composition template="/plantillas/plantillaGlobal.xhtml">
 
             <ui:define name="tituloPagina">
-                tituloPagina
+                Pagina de inicio de farmacia
             </ui:define>            
-            
-            <ui:define name="izquierda">
-                izquierda
-            </ui:define>
 
+            
             <ui:define name="contenido">
+                
+                <div id="formularioNumeroTarjetaSanitaria">
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="numeroTarjetaSanitaria" value="Numero de tarjeta sanitaria" />
+                            <h:inputText id="numeroTarjetaSanitaria" value="#{farmaciaControlador.numeroTarjetaSanitaria}"/>
+                        </h:panelGrid>
+                        <h:commandButton value="Consultar paciente" action="#{farmaciaControlador.doConsultarPaciente()}"/>
+                    </h:form>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                <div id ="formulariosModificarFarmacia">
+                    <div id ="formularioModificarCredencialesFarmacia">
+                        <h:form>
+                            <h:panelGrid columns="2">
+                                <h:outputLabel for="nif" value="NIF:" />
+                                <h:inputText id="nif" value="#{farmaciaControlador.farmaciaActual.nif}"/>
+                                <h:outputLabel for="password" value="Contraseña:" />
+                                <h:inputText id="password" value="#{farmaciaControlador.password}"/>
+                            </h:panelGrid>                    
+
+                            <h:commandButton value="Modificar credenciales" action="#{farmaciaControlador.doModificarCredenciales()}"/>
+                        </h:form>
+                    </div>
+                    <div id="formularioModificarDatosFarmacia">
+                        <h:form>
+                            <h:panelGrid columns="2">
+                                <h:outputLabel for="nombreFarmacia" value="Nombre:" />
+                                <h:inputText id="nombreFarmacia" value="#{farmaciaControlador.farmaciaActual.nombreFarmacia}"/>
+                                <h:outputLabel for="domicilio" value="Domicilio:" />
+                                <h:inputText id="domicilio" value="#{farmaciaControlador.farmaciaActual.direccion.domicilio}"/>
+                                <h:outputLabel for="localidad" value="Localidad:" />
+                                <h:inputText id="localidad" value="#{farmaciaControlador.farmaciaActual.direccion.localidad}"/>
+                                <h:outputLabel for="codigoPostal" value="CP:" />
+                                <h:inputText id="codigoPostal" value="#{farmaciaControlador.farmaciaActual.direccion.codigoPostal}"/>
+                                <h:outputLabel for="provincia" value="Provincia:" />
+                                <h:inputText id="provincia" value="#{farmaciaControlador.farmaciaActual.direccion.provincia}"/>
+                            </h:panelGrid>                    
+
+                            <h:commandButton value="Modificar datos" action="#{farmaciaControlador.doModificarDatos()}"/>
+                        </h:form>
+                    </div>
+                </div>
             </ui:define>
 
         </ui:composition>
