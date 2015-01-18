@@ -20,7 +20,7 @@
             </ui:define>
 
             <ui:define name="contenido">
-                <h:outputText value="Ficha de #{medicoControlador.paciente.apellidos}"/>
+                <h:outputText style="color:blue;" value="Ficha de #{medicoControlador.paciente.apellidos}"/>
                 <h:form>
                     <h:dataTable var="tratamiento" value="#{medicoControlador.listaTratamientos}">
                         <h:column>

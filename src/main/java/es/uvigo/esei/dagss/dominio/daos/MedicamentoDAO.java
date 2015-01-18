@@ -14,7 +14,7 @@ import javax.persistence.Query;
 public class MedicamentoDAO extends GenericoDAO<Medicamento> {
 
     public List<Medicamento> buscarPorNombre(String nombre) {
-        //COGER FECHA HOY
+     
         Query q = em.createQuery("SELECT m FROM Medicamento AS m WHERE m.nombre LIKE :name");
         q.setParameter("name", "%" + nombre + "%");
         return q.getResultList();
