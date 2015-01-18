@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+
+    <body>
+
+        <ui:composition template="/plantillas/plantillaGlobal.xhtml">
+
+            <ui:define name="tituloPagina">
+                Editar perfil
+            </ui:define>            
+            
+            <ui:define name="izquierda">
+                <!-- vacio -->
+            </ui:define>
+
+            <ui:define name="contenido">
+                <h:form>
+                   <h:panelGrid columns="2">
+                        <h:outputLabel for="nombre" value="Nombre:" />
+                        <h:inputText id="nombre" value="#{pacienteControlador.pacienteActual.nombre}" />
+                        <h:outputLabel for="apellidos" value="Apellidos:" />
+                        <h:inputText id="apellidos" value="#{pacienteControlador.pacienteActual.apellidos}" />
+                        <h:outputLabel for="domicilio" value="Domicilio:" />
+                        <h:inputText id="domicilio" value="#{pacienteControlador.pacienteActual.direccion.domicilio}" />
+                        <h:outputLabel for="localidad" value="Localidad:" />
+                        <h:inputText id="localidad" value="#{pacienteControlador.pacienteActual.direccion.localidad}" />
+                        <h:outputLabel for="codigopostal" value="Código Postal:" />
+                        <h:inputText id="codigopostal" value="#{pacienteControlador.pacienteActual.direccion.codigoPostal}" />
+                        <h:outputLabel for="provincia" value="Provincia:" />
+                        <h:inputText id="provincia" value="#{pacienteControlador.pacienteActual.direccion.provincia}" />
+                        <h:outputLabel for="telefono" value="Teléfono:" />
+                        <h:inputText id="telefono" value="#{pacienteControlador.pacienteActual.telefono}" />
+                        <h:outputLabel for="email" value="E-mail:" />
+                        <h:inputText id="email" value="#{pacienteControlador.pacienteActual.email}" />
+                    </h:panelGrid>
+                    <h:commandButton value="Editar" action="#{pacienteControlador.editarPerfil()}"/>
+                </h:form>
+            </ui:define>
+            
+        </ui:composition>
+
+    </body>
+</html>

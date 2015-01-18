@@ -14,10 +14,19 @@
             </ui:define>            
             
             <ui:define name="izquierda">
-
+                <!-- vacio -->
             </ui:define>
 
             <ui:define name="contenido">
+                <h2>Opciones Paciente</h2>
+                <ul>
+                    <h:form rendered="#{pacienteControlador.usandoPassword}">
+                        <li><h:link outcome="/paciente/privado/datosPaciente" value="Editar perfil"/></li>
+                        <li><h:link outcome="/paciente/privado/cambiarPassword" value="Cambiar contraseña"/></li>
+                    </h:form>
+                    <li><h:link outcome="/paciente/privado/crearCita" value="Confeccionar cita médica"/></li>
+                    <li><h:link outcome="#{pacienteControlador.recuperarCitasFuturas()}" value="Consultar futuras citas médicas"/></li>
+                </ul>
             </ui:define>
 
         </ui:composition>

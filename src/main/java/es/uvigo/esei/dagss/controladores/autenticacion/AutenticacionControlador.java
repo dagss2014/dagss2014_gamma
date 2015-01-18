@@ -4,6 +4,7 @@
 
 package es.uvigo.esei.dagss.controladores.autenticacion;
 
+import es.uvigo.esei.dagss.controladores.generico.GenericoControlador;
 import es.uvigo.esei.dagss.dominio.daos.UsuarioDAO;
 import es.uvigo.esei.dagss.dominio.entidades.TipoUsuario;
 import es.uvigo.esei.dagss.dominio.entidades.Usuario;
@@ -19,10 +20,12 @@ import javax.faces.context.FacesContext;
  */
 @Named(value = "autenticacionControlador")
 @SessionScoped
-public class AutenticacionControlador implements Serializable {
+public class AutenticacionControlador extends GenericoControlador implements Serializable {
     private boolean usuarioAutenticado;
     private TipoUsuario tipoUsuario;
-    private Usuario usuario; 
+    private Usuario usuario;
+    private String newPassword;
+    private String newPassword2;
     
     @EJB
     private UsuarioDAO usuarioDAO;
@@ -45,6 +48,22 @@ public class AutenticacionControlador implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+    
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+    
+    public String getNewPassword2() {
+        return newPassword2;
+    }
+
+    public void setNewPassword2(String newPassword2) {
+        this.newPassword2 = newPassword2;
     }
     
     public boolean autenticarUsuario(Long idUsuario, String passwordEnClaro, String tipo) {
@@ -72,6 +91,20 @@ public class AutenticacionControlador implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         
         // Volver a la página principal
+        return "/index";
+    }
+    
+    public String actualizarPassword() {
+        if(!newPassword.equals("") && newPassword.equals(newPassword2)) {
+            usuarioDAO.actualizarPassword(usuario.getId(), newPassword);
+            setFlashMessage("Contraseña cambiada con éxito");
+        } else {
+            setFlashMessage("Las dos contraseñas deben coincidir y ser distintas de vacío");
+        }
+        
+        newPassword = "";
+        newPassword2 = "";
+        
         return "/index";
     }
     

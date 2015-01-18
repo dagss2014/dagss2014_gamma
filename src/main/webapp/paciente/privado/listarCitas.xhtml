@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="/plantillas/plantillaGlobal.xhtml">
+
+            <ui:define name="tituloPagina">
+                Futuras citas médicas
+            </ui:define>            
+            
+            <ui:define name="izquierda">
+                <!-- vacio -->
+            </ui:define>
+
+            <ui:define name="contenido">
+                <h:dataTable value="#{pacienteControlador.listaCitas}" var="cita" class="tablacitas">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Fecha" />
+                        </f:facet>
+                        <h:outputText value="#{cita.fecha}">
+                            <f:convertDateTime pattern="dd.MM.yyyy" timeZone="CET"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Hora" />
+                        </f:facet>
+                        <h:outputText value="#{cita.hora}">
+                            <f:convertDateTime pattern="HH:mm" timeZone="CET"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Médico" />
+                        </f:facet>
+                        <h:outputText value="#{cita.medico.nombre} #{cita.medico.apellidos}"/>
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandButton value="Eliminar" action="#{pacienteControlador.eliminarCita(cita.id)}"/>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
+            </ui:define>
+            
+        </ui:composition>
+
+    </body>
+</html>

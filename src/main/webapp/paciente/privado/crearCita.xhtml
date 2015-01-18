@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+
+    <body>
+
+        <ui:composition template="/plantillas/plantillaGlobal.xhtml">
+
+            <ui:define name="tituloPagina">
+                Confeccionar cita médica
+            </ui:define>            
+            
+            <ui:define name="izquierda">
+                <!-- vacio -->
+            </ui:define>
+
+            <ui:define name="contenido">
+                <h:form>
+                   <h:panelGrid columns="2">
+                        <h:outputLabel for="medico" value="Médico:" />
+                        <h:inputText id="medico" value="#{pacienteControlador.pacienteActual.medico.nombre} #{pacienteControlador.pacienteActual.medico.apellidos}" disabled="true"/>
+                        <p:outputLabel for="fecha" value="Fecha:" />
+                        <p:calendar id="fecha" value="#{pacienteControlador.calendarManagedBean.date}" pattern="dd/MM/yyyy">
+                            <p:ajax event="dateSelect" listener="#{pacienteControlador.citasDisponibles()}" update="hora" />
+                        </p:calendar>
+                        <p:outputLabel for="hora" value="Hora:" />
+                        <h:selectOneMenu id="hora" value="#{pacienteControlador.horaCita}">
+                            <f:selectItems value="#{pacienteControlador.listaHorasLibres}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandButton value="Crear" action="#{pacienteControlador.crearCita()}"/>
+                    <p:remoteCommand name="onload" action="#{pacienteControlador.citasDisponibles()}" autoRun="true" update="hora" />
+                </h:form>
+            </ui:define>
+            
+        </ui:composition>
+
+    </body>
+</html>

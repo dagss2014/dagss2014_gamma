@@ -73,9 +73,6 @@
 	border-color: black;
 }
 
-
-
-
 /* ------- FARMACIA -------- */
 #formulariosModificarFarmacia{
     float: right;
@@ -108,4 +105,17 @@
 	background:none repeat scroll 0 0 #E5E5E5;
 	border-bottom:1px solid #BBBBBB;
 	padding:16px;
+}
+
+/* ------- CITAS -------- */
+.tablacitas {
+    text-align: center;
+    vertical-align: top;
+    width: 100%;
+}
+
+.tablacitas th {
+    background-color: black;
+    color: white;
+    width: 25%;
 }
