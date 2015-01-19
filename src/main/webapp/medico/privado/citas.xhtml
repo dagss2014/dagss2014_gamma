@@ -39,9 +39,11 @@
                         <f:facet name="header">
                             <h:outputText value="Estado" />
                         </f:facet>
-
-                        <h:link outcome="#{medicoControlador.doAtender(cita)}" value="#{cita.estado.etiqueta}" rendered="#{cita.estado.etiqueta == 'PLANIFICADA'}"/>
-
+                        <h:form>
+                             <h:commandLink action="#{medicoControlador.doAtender(cita)}" value="#{cita.estado.etiqueta}" rendered="#{cita.estado.etiqueta == 'PLANIFICADA'}"/>
+                        </h:form>
+                       
+                  
                         <h:outputText value="#{cita.estado.etiqueta}" rendered="#{cita.estado.etiqueta != 'PLANIFICADA'}"/> 
 
 

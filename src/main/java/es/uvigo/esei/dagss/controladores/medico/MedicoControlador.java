@@ -20,15 +20,12 @@ import es.uvigo.esei.dagss.dominio.entidades.Tratamiento;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 
 /**
@@ -238,14 +235,14 @@ public class MedicoControlador implements Serializable {
     //Acciones
  
     public String doListarCitas() {
-        listaCitas = citaDAO.listarCitasHoy(dni);
+        listaCitas = citaDAO.listarCitasHoy(medicoActual.getId());
         return "/medico/privado/citas";
     }
 
     public String doPacienteAtendido() {
         this.cita.setEstado(EstadoCita.COMPLETADA);
         citaDAO.actualizar(this.cita);
-        listaCitas = citaDAO.listarCitasHoy(dni);
+        listaCitas = citaDAO.listarCitasHoy(medicoActual.getId());
 
         return "/medico/privado/citas";
     }
@@ -253,7 +250,7 @@ public class MedicoControlador implements Serializable {
     public String doAtender(Cita cita) {
         this.cita = cita;
         paciente = pacienteDAO.buscarPorDNI(cita.getPaciente().getDni());
-        listaTratamientos = tratamientoDAO.buscarPorDNIPaciente(cita.getPaciente().getDni());
+        listaTratamientos = tratamientoDAO.buscarPorDNIPaciente(this.cita.getPaciente().getDni());
         return "/medico/privado/atencionPaciente";
     }
 

@@ -18,10 +18,10 @@ import javax.persistence.Query;
 @LocalBean
 public class CitaDAO extends GenericoDAO<Cita>{    
 
-    public List<Cita> listarCitasHoy(String id){
-        //COGER FECHA HOY
-        Query q = em.createQuery("SELECT c FROM Cita AS c");
-        // q.setParameter("id", id);
+    public List<Cita> listarCitasHoy(long id){
+        
+        Query q = em.createQuery("SELECT c FROM Cita AS c where c.medico.id=:id");
+        q.setParameter("id", id);
         return q.getResultList();
     }
     
