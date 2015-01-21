@@ -14,12 +14,19 @@
                Perfil Medico
             </ui:define>            
 
-            <ui:define name="izquierda">
-                <h:link outcome="#{medicoControlador.doListarCitas()}" value="CITAS" />
+            
+             <ui:define name="contenido">
+                <h2>Opciones Medico</h2>
+                <ul>
+                    <h:form>
+                        <li><h:link outcome="/medico/privado/datosMedico" value="Editar perfil"/></li>
+                       <h:link outcome="#{medicoControlador.doListarCitas()}" value="CITAS" />
+                    </h:form>
+                </ul>
             </ui:define>
-
-            <ui:define name="contenido">
-            </ui:define>
+            
+            
+           
         </ui:composition>
 
     </body>

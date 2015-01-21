@@ -54,7 +54,19 @@
                         </f:facet>
                         <h:outputText value="#{cita.duracion}"/>
                     </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Finalizar" />
+                        </f:facet>
+                        <h:form>
+                             <h:commandLink action="#{medicoControlador.doFinaliza(cita)}" value="Finalizar"  rendered="#{cita.estado.etiqueta == 'PLANIFICADA'}"/>
+                        </h:form>
+                       
+                            <h:outputText value="Finalizada" rendered="#{cita.estado.etiqueta != 'PLANIFICADA'}"/>
 
+
+                    </h:column>
+                    
                 </h:dataTable>
 
 

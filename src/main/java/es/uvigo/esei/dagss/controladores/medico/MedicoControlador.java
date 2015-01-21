@@ -301,5 +301,25 @@ public class MedicoControlador implements Serializable {
         }
         return results;
     }
+    
+    public String doFinaliza (Cita cita) {
+        cita.setEstado(EstadoCita.COMPLETADA);
+        this.cita = cita;
+        citaDAO.actualizar(this.cita);
+        listaCitas = citaDAO.listarCitasHoy(medicoActual.getId());
+        return "/medico/privado/citas";
+    }
+    
+    public String noRealizada(){
+        this.cita.setEstado(EstadoCita.AUSENTE);
+        citaDAO.actualizar(this.cita);
+        listaCitas = citaDAO.listarCitasHoy(medicoActual.getId());
+        return "/medico/privado/citas";
+    }
+    
+    public String editarPerfil() {
+        medicoActual = medicoDAO.actualizar(medicoActual);        
+        return "/medico/privado/index";
+    }
 
 }

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="/plantillas/plantillaGlobal.xhtml">
+
+            <ui:define name="tituloPagina">
+                Editar perfil
+            </ui:define>            
+            
+            <ui:define name="izquierda">
+                              <!-- a -->
+            </ui:define>
+
+            <ui:define name="contenido">
+                <h:form>
+                   <h:panelGrid columns="2">
+                        <h:outputLabel for="nombre" value="Nombre:" />
+                        <h:inputText id="nombre" value="#{medicoControlador.medicoActual.nombre}" />
+                        <h:outputLabel for="apellidos" value="Apellidos:" />
+                        <h:inputText id="apellidos" value="#{medicoControlador.medicoActual.apellidos}" />
+                        <h:outputLabel for="DNI" value="Domicilio:" />
+                        <h:inputText id="domicilio" value="#{medicoControlador.medicoActual.dni}" />
+                        <h:outputLabel for="telefono" value="Teléfono:" />
+                        <h:inputText id="telefono" value="#{medicoControlador.medicoActual.telefono}" />
+                        <h:outputLabel for="email" value="E-mail:" />
+                        <h:inputText id="email" value="#{medicoControlador.medicoActual.email}" />
+                    </h:panelGrid>
+                    <h:commandButton value="Editar" action="#{medicoControlador.editarPerfil()}"/>
+                </h:form>
+            </ui:define>
+            
+        </ui:composition>
+  </body>
+</html>
